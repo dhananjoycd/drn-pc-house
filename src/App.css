@@ -36,3 +36,99 @@
     transform: rotate(360deg);
   }
 }
+
+/* MY custom css */
+/* for Banner */
+.h-banner{
+  height: 576px;
+}
+
+.b-title{
+  background-color: rgba(18, 1, 1, 0.650);
+  border-radius: 5px;
+  padding: 8px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.b-body{
+  background-color: rgba(197, 22, 22, 0.380);
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 20px;
+  color: yellow;
+  font-weight:200px;
+  font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+}
+
+@media screen and (max-width: 767px){
+  .h-banner{
+      height: 360px;
+  
+  }
+}
+
+
+/* for text title and body */
+/* my css */
+.f-cursive{
+  font-family:cursive;
+}
+
+
+.font-title{
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+
+}
+
+.font-body{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+} 
+
+
+/* link btn css */
+.common-link{
+  text-decoration: none;
+  border: 2px solid rgb(37, 4, 65);
+  color:  rgb(37, 4, 65);
+  border-radius: 5px;
+  background-color: whitesmoke;
+  padding: 5px;
+  font-weight: bold;   
+  
+}
+
+.common-link:hover{
+  text-decoration: none;
+  border: 2px solid whitesmoke;
+  color: rgb(245, 245, 245);
+  border-radius: 5px;
+  background: linear-gradient(180deg, rgba(30,45,125, 1) 0%, rgba(35, 30, 130, 0.9) 38%, rgba(35, 30, 125, 0.9) 100%  );
+  padding: 5px;
+  font-weight: bold;
+      
+}
+/* title degine */
+.title{
+  color:  rgb(37, 4, 65);
+  background: linear-gradient(180deg, rgba(30,45,125, .1) 0%, rgba(35, 30, 130, 0.1) 38%, rgba(35, 30, 125, 0.1) 100%  );
+  width: 50%;
+  padding: 6px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  border: 3px solid  rgb(37, 4, 65);
+  border-radius: 18px 5px 18px 5px;
+  animation: mymove 5s infinite;
+}
+
+.title:hover{
+  text-decoration: none;
+  border: 2px solid whitesmoke;
+  color: rgb(245, 245, 245);
+  border-radius: 5px;
+  background: linear-gradient(180deg, rgba(30,45,125, 1) 0%, rgba(35, 30, 130, 0.9) 38%, rgba(35, 30, 125, 0.9) 100%  );
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 5px 18px 5px  18px ;
+      
+}
