@@ -132,3 +132,12 @@
   border-radius: 5px 18px 5px  18px ;
       
 }
+
+/* profile css */
+.profile img{
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 2px solid red;
+  
+}

@@ -28,7 +28,9 @@ const SocialLogin = () => {
   <h5 className='text-danger'>{errorMessage}</h5>
 }
 
- <button className='btn btn-success font-title' onClick={() => signInWithGoogle()}>Google Log In</button>
+ <button className='btn btn-success font-title' onClick={() => 
+     signInWithGoogle()
+}>Google Log In</button>
         </div>
     );
 };

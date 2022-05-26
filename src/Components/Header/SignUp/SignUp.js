@@ -2,11 +2,13 @@ import React, { useRef } from 'react';
 import { Nav } from 'react-bootstrap';
 import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast} from 'react-toastify';
 import auth from '../../../firebase.init';
 import Loading from '../../OtherPages/PageNotFound/Loading';
 import SocialLogin from '../SocialLogin';
 
 const SignUp = () => {
+
   //input data value receive from user
   const nameRef = useRef('');
   const emailRef = useRef('');
@@ -31,6 +33,7 @@ const SignUp = () => {
     let errorAce;
       if(error || updateError ){
           errorAce = error?.message || updateError?.message;
+    
       }
       // console.log(errorAce)
 
@@ -39,8 +42,10 @@ const SignUp = () => {
     }
 
     if(user){
-     //navigate korte hobe
-     navigate(from, { replace: true });
+    
+     toast.success('Succesfully Created Your Profile');
+     navigate(from , {replace: true});
+     window.location.reload();
     }
 
 
@@ -56,9 +61,8 @@ const SignUp = () => {
           if(!error){
            if(!updateError){
             await  createUserWithEmailAndPassword(email, password);
-            await updateProfile({ displayName});
-            alert('Your Profile Created');
-            window.location.reload();
+           await updateProfile({displayName});
+          
            }
            else{
             
@@ -75,8 +79,8 @@ const SignUp = () => {
        
         }
         else{
-          alert(`Password does not match`);
-          window.location.reload();
+          toast.warning(`Password does not match`);
+          // window.location.reload();
 
         }
       }

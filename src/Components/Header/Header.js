@@ -44,7 +44,7 @@ const Header = () => {
   <NavLink className="ms-3 fw-bold "  as={Link} to={'/'}>Home</NavLink>
   <NavLink className="ms-3 fw-bold " as={Link} to="/blogs">Blogs</NavLink>
     <NavLink className="ms-3 fw-bold " title='Products of Users' as={Link} to="/parts">Parts</NavLink>
-    <NavLink className="ms-3 fw-bold " title='Products of Users' as={Link} to="/collections">Reviews</NavLink>
+    <NavLink className="ms-3 fw-bold " title='Products of Users' as={Link} to="/reviews">Reviews</NavLink>
   {
     user? <>
     

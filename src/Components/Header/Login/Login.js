@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { Nav } from 'react-bootstrap';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import Loading from '../../OtherPages/PageNotFound/Loading';
 import SocialLogin from '../SocialLogin';
@@ -52,7 +53,7 @@ const Login = () => {
            }
            
     else{
-      alert(`You have some error like ${errorAce}`)
+       toast.warning(`You have some error like ${errorAce}`)
     }
          }
    
@@ -89,7 +90,7 @@ const Login = () => {
      onClick={async () => {
          const email = emailRef.current.value;
        await sendPasswordResetEmail(email);
-       alert('Sent email for Reset Password');
+        toast.warning('Sent email for Reset Password');
      }}
    >
      Forget password
