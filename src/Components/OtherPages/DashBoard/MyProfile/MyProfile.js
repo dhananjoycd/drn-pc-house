@@ -169,7 +169,10 @@ else{
   <Card className='mt-3'>
   <div className='update Profile my-3'>
             <h3> Update your Profile</h3>
-            <h6 className='text-danger font-title'> After Updating Your Profile, You will be able to take order and Add Reviews</h6>
+            {
+              (dbUser?.profileDone)? <h6 className='text-success font-title'> You can able to take order and Add Reviews</h6> : <h6 className='text-danger font-title'> After Updating Your Profile, You will be able to take order and Add Reviews</h6>
+            }
+          
 
             <form onSubmit={handleFormSubmit}>
 
