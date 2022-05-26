@@ -4,10 +4,11 @@ import auth from "../firebase.init";
 
 const useUpdatePost = () => {
     const [user] = useAuthState(auth);
+    let updateDone;
 
-    const updateApi = (api, data, pUid) =>{
+    const updateApi = (api, data, pUid, admin) =>{
        
-    if(user?.uid===pUid){
+    if(admin==='Admin' || user?.uid===pUid){
       fetch(api, {
         method: 'PUT',
         headers: {
@@ -18,18 +19,20 @@ const useUpdatePost = () => {
       .then(res => res.json())
       .then(result => {
       console.log('data pabo',result);
-      toast.success(`Hey! ${user?.displayName}, Your product update was successfully done`);
+      updateDone = true;
+      toast.success(`Hey! ${user?.displayName}, Your post update was successfully done`);
       window.location.reload();
      
       })
     }
 
     else{
-      toast.warning(`Hey! ${user?.displayName}, You may click mistakenly but it does not exist in your any products`)
+        updateDone = false;
+      toast.warning(`Hey! ${user?.displayName}, You may click mistakenly but it does not exist in your any post`)
     }
      
      }
-    return {updateApi};
+    return {updateApi, updateDone};
 };
 
 export default useUpdatePost;

@@ -12,7 +12,7 @@ import useUpdatePost from '../../../../Hooks/useUpdatePost';
 
 const MyProfile = () => {
     const {createApi} = useCreatePost();
-    const {updateApi} = useUpdatePost();
+    const {updateApi, updateDone} = useUpdatePost();
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
@@ -76,16 +76,19 @@ const handleEmail = async () => {
     const phoneNumber = phone;
     const photoURL = photo || user?.photoURL;
 
-    const data = { uid: user.uid, profileDone:true, role:'Viewer', displayName, phoneNumber, photoURL, linkdinUrl, educationInfo, address };
+    const data = {uid: user.uid, profileDone:true, displayName, email: user?.email, phoneNumber, photoURL, linkdinUrl, educationInfo, address};
     await updateProfile({displayName,photoURL});
 
 
 if(dbUser?.profileDone){
-    updateApi(`http://localhost:5000/users/${dbUser._id}`, data, dbUser?.uid)
-    toast.success('Your Profile Updated Success');
+    updateApi(`http://localhost:5000/users/${dbUser._id}`, data, dbUser?.uid, dbUser?.role)
+   {
+    updateDone&&  toast.success('Your Profile was Updated Successfully');
+   }
 }
 else{
   createApi(userUrl, data);
+
     toast.success('First Time Updated Success');
 }
    
@@ -118,7 +121,9 @@ else{
  </div>
   <Card.Body>
     <Card.Title>Name: <span className='text-danger'>{user?.displayName || 'New User'}</span></Card.Title>
-    <Card.Title>Status: <span className='rounded-pill bg-info text-dark px-3 py-1'>{dbUser?.role}</span></Card.Title>
+   {
+        dbUser?.role? <Card.Title>Status: <span className='rounded-pill bg-info text-dark px-3 py-1'>{dbUser?.role}</span></Card.Title>: <Card.Title>Status: <span className='rounded-pill bg-info text-dark px-3 py-1'>{'Viewer'}</span></Card.Title>
+   }
     <Card.Text>
     Email: <span className='text-primary'>{user?.email}</span> <br />
   
