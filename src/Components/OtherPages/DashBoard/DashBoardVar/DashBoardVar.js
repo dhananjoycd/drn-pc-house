@@ -43,11 +43,19 @@ const {posts} = useGetPost(userUrl);
                 <Nav.Link as={Link} to="/dashboard/manageOrders">Manage Orders</Nav.Link>
               <Nav.Link as={Link} to="/dashboard/addProducts">Add Products</Nav.Link>
               <Nav.Link as={Link} to="/dashboard/manageProducts">Manage Products</Nav.Link>
-              <Nav.Link as={Link} to="/dashboard/admin">Make Admin</Nav.Link></>: <>
-              <Nav.Link as={Link} to="/dashboard/myorders">My Orders</Nav.Link>
-              <Nav.Link as={Link} to="/dashboard/addreview">Add Review</Nav.Link>
+              <Nav.Link as={Link} to="/dashboard/admin">Make Admin</Nav.Link></>:<>
+              {
+           ( dbUser?._id)? <>
+            <Nav.Link as={Link} to="/dashboard/myorders">My Orders</Nav.Link>
+            <Nav.Link as={Link} to="/dashboard/addreview">Add Review</Nav.Link></> : <>
+            
+            <Nav.Link as={Link} to="/dashboard/myorders" disabled>My Orders</Nav.Link>
+              <Nav.Link as={Link} to="/dashboard/addreview" disabled>Add Review</Nav.Link>
+            </>
+          }
               </>
           }
+         
            
             </Nav>
            

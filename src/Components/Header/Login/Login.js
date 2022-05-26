@@ -4,7 +4,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
-import Loading from '../../OtherPages/PageNotFound/Loading';
+import Loading from '../../../Hooks/Loading';
 import SocialLogin from '../SocialLogin';
 
 const Login = () => {

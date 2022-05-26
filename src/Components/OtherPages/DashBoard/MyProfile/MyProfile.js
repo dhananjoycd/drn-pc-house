@@ -5,6 +5,7 @@ import { useAuthState, useSendEmailVerification, useSendPasswordResetEmail, useU
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../../firebase.init';
+import Loading from '../../../../Hooks/Loading';
 import useCreatePost from '../../../../Hooks/useCreatePost';
 import useGetPost from '../../../../Hooks/useGetPost';
 import useUpdatePost from '../../../../Hooks/useUpdatePost';
@@ -57,7 +58,7 @@ if(error || updateError || verificationError || emailError ||errorRest){
 }
 
     if(loading || updating || sending || emailUpdating || sendingRest){
-    <p className='load'> <span>loading...</span> </p>
+    return <p><Loading></Loading></p>
     }
 
 
@@ -168,6 +169,7 @@ else{
   <Card className='mt-3'>
   <div className='update Profile my-3'>
             <h3> Update your Profile</h3>
+            <h6 className='text-danger font-title'> After Updating Your Profile, You will be able to take order and Add Reviews</h6>
 
             <form onSubmit={handleFormSubmit}>
 

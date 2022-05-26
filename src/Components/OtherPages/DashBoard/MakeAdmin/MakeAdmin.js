@@ -3,6 +3,8 @@ import { Button } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import auth from '../../../../firebase.init';
+import Loading from '../../../../Hooks/Loading';
+import useDeletePost from '../../../../Hooks/useDeletePost';
 import useGetPost from '../../../../Hooks/useGetPost';
 import useUpdatePost from '../../../../Hooks/useUpdatePost';
 
@@ -10,10 +12,15 @@ import useUpdatePost from '../../../../Hooks/useUpdatePost';
 const MakeAdmin = () => {
     const [user, loading, error] = useAuthState(auth);
     const {updateApi, updateDone} = useUpdatePost();
+    const {deleteApi} = useDeletePost();
     //get correct user
   let userUrl = 'http://localhost:5000/users'
   const {posts} = useGetPost(userUrl);
    let dbUsers = posts;
+
+   if(loading || !dbUsers?.length){
+       return <Loading></Loading>
+   }
 
     return (
         <div>
@@ -44,15 +51,18 @@ const MakeAdmin = () => {
         <Button onClick={()=>{
             const data ={ role: "Admin"}
              updateApi(`http://localhost:5000/users/${dbUser._id}`, data, user?.uid, 'Admin' )
-             {
-              updateDone&&  toast.success('Your Profile was Updated Successfully');
-             }
+        
         }} variant="success" className='fw-bold b-title' size="sm">
       Make Admin
     </Button>
             }</td>
 
-        <td> <Button variant="danger" className='fw-bold b-title' size="sm">
+
+        <td> <Button onClick={()=>{
+            const data ={ role: "Admin"}
+             deleteApi(`http://localhost:5000/users/${dbUser._id}`, dbUser._id, 'Admin' )
+    
+        }} variant="danger" className='fw-bold b-title' size="sm">
     Remove User
     </Button></td>
       </tr>)
