@@ -69,15 +69,13 @@ const handleEmail = async () => {
 
 if(dbUser?.profileDone){
   updateUser(dbUser?._id, data);
+  toast.success('Your Profile was Updated Successfully');
    
-   {
-    updateDone&&  toast.success('Your Profile was Updated Successfully');
-   }
+  
 }
 else{
   createApi(userUrl, data);
-
-    toast.success('First Time Updated Success');
+  toast.success('First Time Updated Success');
 }
    
   }
@@ -157,7 +155,7 @@ else{
   <div className='update Profile my-3'>
             <h3> Update your Profile</h3>
             {
-              (dbUser?.profileDone)? <h6 className='text-success font-title'> You can able to take order and Add Reviews</h6> : <h6 className='text-danger font-title'> After Updating Your Profile, You will be able to take order and Add Reviews</h6>
+              (dbUser?.profileDone)? <h6 className='text-success font-title'> You can able to take order and Add Reviews</h6> : <h6 className='text-danger font-title  fs-5'>Becareful! You can Update Your Profile Once <span className='text-primary'>But if you need update again place contact to admin</span></h6>
             }
           
 
@@ -208,7 +206,7 @@ else{
 </div> 
 
 {
-  dbUser?.profileDone? <input className='mb-2 btn btn-success' type="submit" value="Update Profile" />  : <input className='mb-2 btn btn-danger' type="submit" value="Update First Time" />
+  dbUser?.profileDone? <input className='mb-2 btn btn-success' type="submit" value="Already Updated Profile" disabled/>  : <input className='mb-2 btn btn-danger font-title fw-bold' type="submit" value="Update Profile Once" />
 } 
      
 </form>  

@@ -4,18 +4,19 @@ import { useForm } from "react-hook-form";
 import Loading from '../../../Hooks/Loading';
 import { toast } from 'react-toastify';
 import useCreatePost from '../../../Hooks/useCreatePost';
+import { useNavigate } from 'react-router-dom';
 
 
 const OrderForm = ({post}) => {
-    const {dbUser,updatePcParts} = useMongoDB();
+    const navigate = useNavigate();
+    const {dbUser, updatePcParts} = useMongoDB();
     const {createApi} = useCreatePost();
   let {_id, lowestQuantity, highestQuantity, productQuantity, productPrice, productName, productType} = post;
     const { register, handleSubmit, formState: { errors } } = useForm();
 
 
     if(!dbUser){
-
-        return<> <span className='text-danger text-center fs-3'>User Not Found</span><Loading></Loading></>
+        return<> <span className='text-danger text-center fs-3'>User Not Found</span> <Loading></Loading> <span className='text-warning bg-dark rounded font-title text-center fs-2'> Please Update your Profile to take Order</span></>
     }
 
     const displayName = dbUser?.displayName;
@@ -30,29 +31,31 @@ const OrderForm = ({post}) => {
   const onSubmit = data =>{
     const quantity = parseInt(data.userQuantity);
     const shipingAddress = (data.address);
+    
     const orderNo = Math.floor(100000 + Math.random() * 900000);
 
     if(lowestQuantity <=quantity && quantity<=highestQuantity){
         productQuantity = productQuantity-quantity;
        
   const orderData = {
-  pid:_id, uid, orderNo, productName, quantity, productPrice, displayName, email, phoneNumber, shipingAddress ,productType, payment: 'unpaid'
+  pid:_id, uid, orderNo, productName, productQuantity, quantity, productPrice, displayName, email, phoneNumber, shipingAddress ,productType, payment: 'unpaid'
 };
 
 if(productQuantity>0){
-    updatePcParts(_id, {productQuantity})
+    updatePcParts(_id, {productQuantity});
 createApi('http://localhost:5000/orders', orderData);
-toast.success('taken order');
+toast.success('Taken Order Succefully done');
+navigate('/dashboard/myorders')
 }
 
 else{
-    toast.warning('over');   
+    toast.warning(`Your Quantity ${quantity} is less than Zero`);   
 }
 
     }
 
 else{
-    toast.warning('need');
+    toast.warning(`Your Quantity ${quantity} doesn't exist our quantity ranage ${lowestQuantity} - ${highestQuantity}`);
 }
   
   };
@@ -80,7 +83,7 @@ else{
 
  <div className='mt-2 text-center'>
  <label>Your Phone</label> <br />
-      <input type="tel" checked value={phoneNumber} readOnly  {...register("phoneNumber")} />
+      <input type="tel" placeholder="Type phone number" {...register("phoneNumber")} />
  </div>
 
  <div className='mt-2 text-center'>

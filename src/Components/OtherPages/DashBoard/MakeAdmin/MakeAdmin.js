@@ -23,14 +23,14 @@ const MakeAdmin = () => {
     <div className="d-flex justify-content-center my-3">
             <h3 className='text-center title px-2'>We Have <span className='text-warning'>{dbUsers?.length}</span>  users with Admin </h3>
             </div>
-    <table className="table table-striped">
+    <table className="table  text-center border table-striped">
     <thead>
-    <tr>
+    <tr className='bg-dark text-white'>
       <th scope="col">SN.</th>
       <th scope="col">User Name</th>
       <th scope="col">Email</th>
       <th scope="col">Status</th>
-      <th className='bg-warning rounded' scope="col"  colspan="2">Admin Action</th>
+      <th className='bg-warning text-dark rounded' scope="col"  colspan="2">Admin Action</th>
     </tr>
   </thead>
   <tbody>

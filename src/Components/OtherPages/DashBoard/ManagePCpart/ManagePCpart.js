@@ -1,18 +1,17 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import useGetOnePost from '../../../Hooks/useGetOnePost';
-import OrderForm from '../OrderForm/OrderForm';
+import useGetOnePost from '../../../../Hooks/useGetOnePost';
+import PcPartUpdateForm from '../PcPartUpdateForm/PcPartUpdateForm';
 
-const PurchaseNow = () => {
-    const {partID} = useParams();
-    const {post} = useGetOnePost(`http://localhost:5000/pcparts/${partID}`);
-
+const ManagePCpart = () => {
+    const {pcPartID} = useParams();
+    const {post} = useGetOnePost(`http://localhost:5000/pcparts/${pcPartID}`);
     const {_id, lowestQuantity, highestQuantity, productQuantity, productType, productName, productIMG, productPrice, productBody} = post;
-
     return (
-        <div className='container-lg my-3'>
+        <div>
+           <div className='container-lg my-3'>
              <div className="d-flex justify-content-center my-3 ">
-             <h4 className='text-center title'>Your Selected product to Purchase</h4>
+             <h4 className='text-center title px-3'>See details and update Product</h4>
              </div>
   
         <div className='row'>
@@ -29,12 +28,13 @@ const PurchaseNow = () => {
   </div>
   <div className='col d-flex justify-content-around'>
 
-<h5>Price: <span className='ff bg-primary text-white fw-bold px-3 py-1 rounded-pill'>{productPrice} TK </span>   </h5>
+<h5>Price: <span className='ff bg-primary text-white fw-bold px-3 py-1 rounded-pill'>{ productPrice} TK </span>   </h5>
 
   </div>
   
  </div>
  <h5 className='text-center mt-4 font-title'>Quantity: <span className='ff bg-warning text-danger fw-bold px-3 py-1 rounded-pill'>  {productQuantity}</span></h5> 
+ 
  <div className=' mt-4'>
    <h3 className='text-center text-primary font-title '>Product Description  <hr /></h3>
    <p className='bg-light p-2 rounded font-body'>  { productBody} <br /></p> 
@@ -45,14 +45,15 @@ const PurchaseNow = () => {
 <hr />
 
 </div>
-<OrderForm key={_id} post={post}></OrderForm>
+<PcPartUpdateForm key={_id} post={post}></PcPartUpdateForm>
 </div>
     </div>
     </div>
 
  
         </div>
+        </div>
     );
 };
 
-export default PurchaseNow;
+export default ManagePCpart;

@@ -17,13 +17,10 @@ const MyOrder = () => {
         }
     })
 
-    if(orders.length==0){
+    if(myOrders.length==0){
         return  <h6 className='text-center'> <span className='text-danger fs-3'>Orders Field was Empty</span><Loading></Loading></h6>
     }
-    
-    if(!orders.length){
-        return <Loading></Loading>
-    }
+ 
     return (
         <div>
         <div className="table-responsive-md">

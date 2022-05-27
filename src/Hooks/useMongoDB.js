@@ -5,6 +5,7 @@ import useGetPost from './useGetPost';
 import useUpdatePost from './useUpdatePost';
 
 const useMongoDB = () => {
+ 
     const [user] = useAuthState(auth);
     const {updateApi} = useUpdatePost();
     const {deleteApi} = useDeletePost();
@@ -26,10 +27,11 @@ var {posts} = useGetPost('http://localhost:5000/pcparts');
 var {posts} = useGetPost('http://localhost:5000/orders');
  const orders = posts;
 
+
 //update correct API
 
 const updateUser=(id, data)=>{
-    updateApi(`http://localhost:5000/users/${id}`, data, role );
+    updateApi(`http://localhost:5000/users/${id}`, data, role);
 }
 
 const updatePcParts=(id, data)=>{
@@ -48,7 +50,7 @@ const deleteUser =(id) =>{
     deleteApi(`http://localhost:5000/users/${id}`, id, role )
 }
 const deleteOrder =(id) =>{
-    deleteApi(`http://localhost:5000/orders/${id}`, id, role )
+    deleteApi(`http://localhost:5000/orders/${id}`, id, role,uid )
 }
 
     return {dbUser, dbUsers,pcParts,orders, updatePcParts,updateUser, updateOrder, deleteUser, deletePcPart, deleteOrder};
