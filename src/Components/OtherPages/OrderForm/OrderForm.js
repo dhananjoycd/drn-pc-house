@@ -3,7 +3,6 @@ import useMongoDB from '../../../Hooks/useMongoDB';
 import { useForm } from "react-hook-form";
 import Loading from '../../../Hooks/Loading';
 import { toast } from 'react-toastify';
-import useUpdatePost from '../../../Hooks/useUpdatePost';
 import useCreatePost from '../../../Hooks/useCreatePost';
 
 

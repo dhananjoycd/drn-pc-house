@@ -8,13 +8,11 @@ import auth from '../../../../firebase.init';
 import Loading from '../../../../Hooks/Loading';
 import useCreatePost from '../../../../Hooks/useCreatePost';
 import useMongoDB from '../../../../Hooks/useMongoDB';
-import useUpdatePost from '../../../../Hooks/useUpdatePost';
 
 
 const MyProfile = () => {
 let userUrl = 'http://localhost:5000/users'
     const {createApi} = useCreatePost();
-    const {updateApi, updateDone} = useUpdatePost();
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
@@ -26,9 +24,8 @@ let userUrl = 'http://localhost:5000/users'
     const [sendPasswordResetEmail, sendingRest, errorRest] = useSendPasswordResetEmail(
         auth
       );
-
 //get correct user
-  const {dbUser} = useMongoDB();
+const {dbUser,updateUser,updateDone } = useMongoDB();
 
      //default profile pic Image
      const profilePic = 'https://images.pexels.com/photos/1535907/pexels-photo-1535907.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'; 
@@ -46,7 +43,6 @@ const [address, setAddress] = useState(dbUser?.address);
 if(error || updateError || verificationError || emailError ||errorRest){
     errorMessage = error?.message || updateError?.message ||verificationError?.message || emailError?.message || errorRest?.message; 
 }
-
     if(loading || updating || sending || emailUpdating || sendingRest ){
     return <p><Loading></Loading></p>
     }
@@ -72,7 +68,8 @@ const handleEmail = async () => {
 
 
 if(dbUser?.profileDone){
-    updateApi(`http://localhost:5000/users/${dbUser._id}`, data, dbUser?.uid, dbUser?.role)
+  updateUser(dbUser?._id, data);
+   
    {
     updateDone&&  toast.success('Your Profile was Updated Successfully');
    }

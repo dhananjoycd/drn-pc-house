@@ -1,15 +1,18 @@
 import { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
+import auth from "../firebase.init";
 
 const useDeletePost = () => {
+  const [user] = useAuthState(auth);
     const [latestPosts,  setPosts] = useState([]);
 
     const posts = [];
     latestPosts.map(post => posts.unshift(post));
 
-    const deleteApi = (api, id, Admin) =>{
+    const deleteApi = (api, id, Admin, pUid) =>{
   
-        if(Admin==='Admin'){
+        if(Admin==='Admin' || user?.uid===pUid){
          const doSure = window.confirm('Do you want to delete this?');
          if(doSure){
         

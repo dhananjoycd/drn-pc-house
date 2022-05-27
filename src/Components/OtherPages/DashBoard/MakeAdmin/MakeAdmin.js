@@ -3,14 +3,12 @@ import { Button } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../../firebase.init';
 import Loading from '../../../../Hooks/Loading';
-import useDeletePost from '../../../../Hooks/useDeletePost';
 import useMongoDB from '../../../../Hooks/useMongoDB';
 
 
 const MakeAdmin = () => {
     const [user, loading] = useAuthState(auth);
 
-    const {deleteApi} = useDeletePost();
 
     //get correct user
     const {dbUsers,updateUser, deleteUser} = useMongoDB();

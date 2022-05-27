@@ -5,14 +5,9 @@ import OrderForm from '../OrderForm/OrderForm';
 
 const PurchaseNow = () => {
     const {partID} = useParams();
-
-
-
-
     const {post} = useGetOnePost(`http://localhost:5000/pcparts/${partID}`);
 
     const {_id, lowestQuantity, highestQuantity, productQuantity, productType, productName, productIMG, productPrice, productBody} = post;
-
 
     return (
         <div className='container-lg my-3'>
