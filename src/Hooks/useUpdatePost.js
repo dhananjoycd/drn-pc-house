@@ -6,8 +6,8 @@ const useUpdatePost = () => {
     const [user] = useAuthState(auth);
     let updateDone;
 
-    const updateApi = (api, data, pUid, admin) =>{
-       
+    const updateApi = (api, data, admin, pUid) =>{
+      console.log(data);
     if(admin==='Admin' || user?.uid===pUid){
       fetch(api, {
         method: 'PUT',
@@ -15,12 +15,13 @@ const useUpdatePost = () => {
             'content-type': 'application/json'
         },
         body: JSON.stringify(data)
+  
       })
       .then(res => res.json())
       .then(result => {
       console.log('data pabo',result);
       updateDone = true;
-      toast.success(`Hey! ${user?.displayName}, Your post update was successfully done`);
+      // toast.success(`Hey! ${user?.displayName}, Your post update was successfully done`);
       window.location.reload();
      
       })
@@ -28,7 +29,7 @@ const useUpdatePost = () => {
 
     else{
         updateDone = false;
-      toast.warning(`Hey! ${user?.displayName}, You may click mistakenly but it does not exist in your any post`)
+      toast.warning(`Hey! ${user?.displayName}, You may click mistakenly but it does not exist with You`)
     }
      
      }

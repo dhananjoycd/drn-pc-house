@@ -20,6 +20,7 @@ import MakeAdmin from './Components/OtherPages/DashBoard/MakeAdmin/MakeAdmin';
 import Blogs from './Components/OtherPages/Blogs/Blogs';
 import Parts from './Components/OtherPages/Parts/Parts';
 import Reviews from './Components/OtherPages/Reviews/Reviews';
+import PurchaseNow from './Components/OtherPages/PurchaseNow/PurchaseNow';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
 
     <Route path="blogs" element={<Blogs></Blogs>}></Route>
     <Route path="parts" element={ <Parts></Parts>}></Route>
+    <Route path="parts/:partID" element={<PurchaseNow></PurchaseNow>}></Route>
     <Route path="reviews" element={<Reviews></Reviews>}></Route>
 
 

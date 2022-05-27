@@ -1,22 +1,19 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { toast } from 'react-toastify';
 import auth from '../../../../firebase.init';
 import Loading from '../../../../Hooks/Loading';
 import useDeletePost from '../../../../Hooks/useDeletePost';
-import useGetPost from '../../../../Hooks/useGetPost';
-import useUpdatePost from '../../../../Hooks/useUpdatePost';
+import useMongoDB from '../../../../Hooks/useMongoDB';
 
 
 const MakeAdmin = () => {
-    const [user, loading, error] = useAuthState(auth);
-    const {updateApi, updateDone} = useUpdatePost();
+    const [user, loading] = useAuthState(auth);
+
     const {deleteApi} = useDeletePost();
+
     //get correct user
-  let userUrl = 'http://localhost:5000/users'
-  const {posts} = useGetPost(userUrl);
-   let dbUsers = posts;
+    const {dbUsers,updateUser, deleteUser} = useMongoDB();
 
    if(loading || !dbUsers?.length){
        return <Loading></Loading>
@@ -50,7 +47,7 @@ const MakeAdmin = () => {
         </Button>:
         <Button onClick={()=>{
             const data ={ role: "Admin"}
-             updateApi(`http://localhost:5000/users/${dbUser._id}`, data, user?.uid, 'Admin' )
+            updateUser(dbUser._id, data)
         
         }} variant="success" className='fw-bold b-title' size="sm">
       Make Admin
@@ -60,7 +57,7 @@ const MakeAdmin = () => {
 
         <td> <Button onClick={()=>{
             const data ={ role: "Admin"}
-             deleteApi(`http://localhost:5000/users/${dbUser._id}`, dbUser._id, 'Admin' )
+            deleteUser(dbUser._id)
     
         }} variant="danger" className='fw-bold b-title' size="sm">
     Remove User

@@ -1,13 +1,10 @@
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import auth from '../../../firebase.init';
-import useGetPost from '../../../Hooks/useGetPost';
+import useMongoDB from '../../../Hooks/useMongoDB';
 import Part from '../Part/Part';
 
 const Parts = () => {
-    const [user] = useAuthState(auth);
-    const {posts} = useGetPost('http://localhost:5000/pcparts');
- 
+    const {pcParts} = useMongoDB();
+    const posts = pcParts;
     return (
         <div className='container-xxl'>
             <div className="d-flex justify-content-center mt-4">
@@ -15,7 +12,7 @@ const Parts = () => {
             </div>
 
             <h3 className='text-center py-1 text-primary fs-5'><small className='font-title'>
-      We have <span  className='text-danger'>{posts.length}</span> attractive products available in our total  products collection 
+      We have <span  className='text-danger'>{posts?.length}</span> attractive products available in our total  products collection 
           
           </small> </h3>
    

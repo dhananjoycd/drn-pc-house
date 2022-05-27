@@ -19,16 +19,17 @@ const AddProducts = () => {
     const [productName , setProductName] = useState('');
     const [ productIMG, setProductIMG] = useState('');
     const [ productPrice, setProductPrice] = useState('');
+    const [ productQuantity, setproductQuantity] = useState('');
     const [ lowestQuantity, setLowestQuantity] = useState('');
     const [ highestQuantity, setHighestQuantity] = useState('');
     const [ productBody, setProductBody] = useState('');
     const [productType, setproductType] =useState('Uncategories');
     const [option, setOption] = useState(true);
     //data make for server
-    const totalQuantity = highestQuantity;
+    
 
 
-    const data ={uid, displayName, email, phoneNumber, lowestQuantity, highestQuantity, totalQuantity, productType, productName, productIMG, productPrice, productBody};
+    const data ={uid, displayName, email, phoneNumber, lowestQuantity, highestQuantity, productQuantity, productType, productName, productIMG, productPrice, productBody};
 
     if(!user){
         return <Loading></Loading>
@@ -85,13 +86,18 @@ const AddProducts = () => {
         </div>
 
         <div className="my-3">
-        <label htmlFor="productQuantity">Lowest Products Quantity</label><br />
+        <label htmlFor="productQuantity">Lowest Orders Quantity</label><br />
         <input onChange={(e)=>setLowestQuantity(e.target.value)} type="number" name="productQuantity" required/>
         </div>
 
         <div className="my-3">
-        <label htmlFor="productQuantity">Higest Products Quantity</label><br />
+        <label htmlFor="productQuantity">Higest Orders Quantity</label><br />
         <input onChange={(e)=>setHighestQuantity(e.target.value)} type="number" name="productQuantity" required/>
+        </div>
+        
+        <div className="my-3">
+        <label htmlFor="productQuantity">Total Parts Quantity</label><br />
+        <input onChange={(e)=>setproductQuantity(e.target.value)} type="number" name="productQuantity" required/>
         </div>
         
        

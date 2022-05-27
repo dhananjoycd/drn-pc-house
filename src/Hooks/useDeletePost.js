@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const useDeletePost = () => {
     const [latestPosts,  setPosts] = useState([]);
@@ -19,7 +20,7 @@ const useDeletePost = () => {
            .then(data => {
              const remainingPosts = latestPosts.filter(post =>post._id !== id )
              setPosts(remainingPosts);
-             alert(`Yeah! It has been deleted, Please ReFresh the page`)
+             toast.success(`Yeah! It has been deleted, Please ReFresh the page`)
              window.location.reload();
            })
     
@@ -27,7 +28,7 @@ const useDeletePost = () => {
         }
     
         else{
-          alert(`You may click mistakenly but it does not exist with You`)
+          toast.warning(`You may click mistakenly but it does not exist with You`)
         }
     };
 

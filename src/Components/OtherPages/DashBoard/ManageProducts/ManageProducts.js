@@ -3,13 +3,13 @@ import { Button } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../../../firebase.init';
-import useDeletePost from '../../../../Hooks/useDeletePost';
-import useGetPost from '../../../../Hooks/useGetPost';
+import useMongoDB from '../../../../Hooks/useMongoDB';
 
 const ManageProducts = () => {
     const [user] = useAuthState(auth);
-    const {posts} = useGetPost('http://localhost:5000/pcparts');
-    const {deleteApi} = useDeletePost();
+    const {pcParts, deletePcPart} = useMongoDB();
+    const posts = pcParts;
+
 
     return (
         <div className='container-fluid'>
@@ -37,9 +37,9 @@ const ManageProducts = () => {
 <div className='col'>
 
 
-<h5 className='mb-4'>Price: <span className='ff bg-primary text-white price  rounded-pill'>{post?.productPrice} TK </span>   </h5>
-<h5 className='mt-3'>
-Quantity: <span className='ff bg-warning text-danger fw-bold px-3 py-1 rounded-pill'>  {post?.productQuantity}</span></h5>
+<h6 className='mb-4'>Price: <span className='ff bg-primary text-white price  rounded-pill px-2'>{post?.productPrice} TK </span>   </h6>
+<h6 className='mt-3'>
+Quantity: <span className='ff bg-warning text-danger fw-bold px-3 py-1 rounded-pill'>  {post?.productQuantity}</span></h6>
 
 
 </div>
@@ -56,7 +56,7 @@ Quantity: <span className='ff bg-warning text-danger fw-bold px-3 py-1 rounded-p
 <div className="bg-banner rounded p-1 d-flex justify-content-around">
       <Button as={Link} to={post?._id} className='btn btn-success'>Manage</Button>
 
-      <button onClick={()=> deleteApi(`http://localhost:5000/pcparts/${post?._id}`, post?._id, 'Admin')} className="btn btn-danger">Delete</button>
+      <button onClick={()=> deletePcPart( post?._id)} className="btn btn-danger">Delete</button>
 
 
 </div>

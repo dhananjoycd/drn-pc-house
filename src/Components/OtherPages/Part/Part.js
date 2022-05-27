@@ -3,7 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 
 const Part = (props) => {
-    const {_id, uid, displayName, email, phoneNumber, lowestQuantity, highestQuantity, totalQuantity, productType, productName, productIMG, productPrice, productBody} = props?.post;
+    const {_id, uid, displayName, email, phoneNumber, lowestQuantity, highestQuantity, productQuantity, productType, productName, productIMG, productPrice, productBody} = props?.post;
     const [user] = useAuthState(auth);
 
     return (
@@ -14,7 +14,7 @@ const Part = (props) => {
             <h5 className="card-title font-title fs-4">{productName?.slice(0,60)}</h5>
            <div className='d-flex justify-content-around rounded p-1'>
            <h5 className="card-title bg-warning p-1 rounded me-auto">Price: <span className='ff text-danger'> {productPrice}</span> TK</h5>
-            <h5 className="card-title bg-primary text-white p-1 rounded ms-auto">Quantity: <span className='ff text-warning'>{totalQuantity}</span></h5>
+            <h5 className="card-title bg-primary text-white p-1 rounded ms-auto">Quantity: <span className='ff text-warning'>{productQuantity}</span></h5>
            </div>
            <div className='bg-light p-3 rounded'>
            <h3 className='font-title text-center text-primary'>Product Details <hr /></h3> 
@@ -33,8 +33,7 @@ const Part = (props) => {
 
           <div className="d-flex justify-content-center">
 
-              {/* ami a tag ta nijer ecca kore use koreci instead of button for refresh the mange page */}
-              <a  className='common-link font-btn font-title px-3 bg-warning fw-bold' href={`/myproducts/${_id}`} title="It's your product" >Update Your Stock</a>
+              <a  className='common-link font-btn font-title px-3 bg-warning fw-bold' href={`/parts/${_id}`} title="It's your product" >Purchase Now</a>
               </div>
 
           </div>
