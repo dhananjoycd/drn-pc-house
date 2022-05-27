@@ -6,7 +6,7 @@ import Loading from '../../../../Hooks/Loading';
 import useMongoDB from '../../../../Hooks/useMongoDB';
 
 const MyOrder = () => {
-    const {orders} = useMongoDB();
+    const {orders, updateOrder, deleteOrder} = useMongoDB();
     const [user] = useAuthState(auth);
 
     const myOrders = [];
@@ -57,34 +57,49 @@ const MyOrder = () => {
             <td>{order?.productName.slice(0,16)}</td>
             <td>{order?.quantity}</td>
             <td>{order?.productPrice}</td>
-            <td>{order?.payment}</td>
+            <td><span className='bg-info rounded-pill px-3 py-1 fw-bold'>{order?.payment.toUpperCase()}</span> </td>
             <td> {
                 (order?.payment ==='pending' || order?.payment ==='paid') ? <Button variant="success" className='fw-bold b-title' size="sm" disabled>
               Already Paid
             </Button>:
             <Button onClick={()=>{
                 const data ={payment: 'pending'}
-                // updateUser(dbUser._id, data)
+                updateOrder(order._id, data)
             
             }} variant="success" className='fw-bold b-title' size="sm">
      Pay Payment
         </Button>
                 }</td>
 
-            <td> {
-                (order?.payment ==='paid') ?  <Button onClick={()=>{
-                    // deleteUser(dbUser._id)
-            
-                }} variant="primary" className='fw-bold b-title' size="sm" disabled>
-            Order Confirmed
-            </Button>:
-            <Button onClick={()=>{
-                // deleteUser(dbUser._id)
-        
-            }} variant="danger" className='fw-bold b-title' size="sm">
+        <td> 
+
+        { (order?.payment ==='pending' || order?.payment ==='paid')? <>
+        {
+        (order?.payment ==='paid')&& <Button onClick={()=>{
+        // see shipping date -- niya kaj hobe
+
+        }} variant="primary" className='fw-bold b-title' size="sm" disabled>
+        Order Confirmed
+        </Button>
+        }
+
+        {
+        (order?.payment ==='pending')&& <Button onClick={()=>{
+        //order prccesing niya kah dekhano
+
+        }} variant="danger" className='fw-bold b-title' size="sm" disabled >
+        Order Proccesing
+        </Button>
+        }
+
+        </>:
+        <Button onClick={()=>{
+            deleteOrder(order._id)
+
+        }} variant="danger" className='fw-bold b-title' size="sm">
         Cancel Order
         </Button>
-                }</td>
+        }</td>
     
           </tr>)
       }

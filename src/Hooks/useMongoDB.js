@@ -35,6 +35,9 @@ const updateUser=(id, data)=>{
 const updatePcParts=(id, data)=>{
     updateApi(`http://localhost:5000/pcparts/${id}`, data, role, uid);
 }
+const updateOrder=(id, data)=>{
+    updateApi(`http://localhost:5000/orders/${id}`, data, role, uid);
+}
 
 
 //delete Correct API
@@ -44,8 +47,11 @@ const deletePcPart =(id) =>{
 const deleteUser =(id) =>{
     deleteApi(`http://localhost:5000/users/${id}`, id, role )
 }
+const deleteOrder =(id) =>{
+    deleteApi(`http://localhost:5000/orders/${id}`, id, role )
+}
 
-    return {dbUser, dbUsers,pcParts,orders, updatePcParts,updateUser, deleteUser, deletePcPart};
+    return {dbUser, dbUsers,pcParts,orders, updatePcParts,updateUser, updateOrder, deleteUser, deletePcPart, deleteOrder};
 };
 
 export default useMongoDB;

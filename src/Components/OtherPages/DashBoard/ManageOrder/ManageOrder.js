@@ -4,7 +4,7 @@ import Loading from '../../../../Hooks/Loading';
 import useMongoDB from '../../../../Hooks/useMongoDB';
 
 const ManageOrder = () => {
-    const {orders} = useMongoDB();
+    const {orders, updateOrder,deleteOrder } = useMongoDB();
 
     if(orders.length==0){
         return  <h6 className='text-center'> <span className='text-danger fs-3'>Orders Field was Empty</span><Loading></Loading></h6>
@@ -42,14 +42,14 @@ const ManageOrder = () => {
             <td>{order?.productName.slice(0,16)}</td>
             <td>{order?.quantity}</td>
             <td>{order?.productPrice}</td>
-            <td>{order?.payment}</td>
+            <td><span className='bg-info rounded-pill px-3 py-1 fw-bold'>{order?.payment.toUpperCase()}</span> </td>
             <td> {
                 (order?.payment ==='paid') ? <Button variant="success" className='fw-bold b-title' size="sm" disabled>
               Already Taken
             </Button>:
             <Button onClick={()=>{
                 const data ={payment: 'paid'}
-                // updateUser(dbUser._id, data)
+                updateOrder(order._id, data)
             
             }} variant="success" className='fw-bold b-title' size="sm">
        Order Confirm
@@ -58,7 +58,7 @@ const ManageOrder = () => {
     
     
             <td> <Button onClick={()=>{
-                // deleteUser(dbUser._id)
+                 deleteOrder(order._id)
         
             }} variant="danger" className='fw-bold b-title' size="sm">
         Cancel Order
