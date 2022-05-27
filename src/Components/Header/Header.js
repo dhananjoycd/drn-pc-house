@@ -50,7 +50,7 @@ const Header = () => {
     
 
     <NavLink className="ms-3 fw-bold" as={Link} to="/dashboard">Dash Board</NavLink>
-    <span className='text-warning ms-3'>{user?.displayName} <button className='text-white fw-bold btn btn-danger' onClick={handdleSignOut} >( Sign Out )</button></span>
+    <span className='text-warning ms-3'>{user?.displayName.split(' ')?.[0]} <button className='text-white fw-bold btn btn-danger' onClick={handdleSignOut} >( Sign Out )</button></span>
     </> : <>  <NavLink className="ms-3 fw-bold " as={Link} to="/login">Login</NavLink>
     <NavLink className="ms-3 fw-bold " as={Link} to="/signup">Sign Up</NavLink></>
   }

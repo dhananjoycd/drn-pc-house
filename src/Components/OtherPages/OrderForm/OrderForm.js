@@ -30,13 +30,13 @@ const OrderForm = ({post}) => {
   const onSubmit = data =>{
     const quantity = parseInt(data.userQuantity);
     const shipingAddress = (data.address);
-    
+    const orderNo = Math.floor(100000 + Math.random() * 900000);
 
     if(lowestQuantity <=quantity && quantity<=highestQuantity){
         productQuantity = productQuantity-quantity;
        
   const orderData = {
-  pid:_id, uid, productName, quantity, productPrice, displayName, email, phoneNumber, shipingAddress ,productType, payment: 'unpaid'
+  pid:_id, uid, orderNo, productName, quantity, productPrice, displayName, email, phoneNumber, shipingAddress ,productType, payment: 'unpaid'
 };
 
 if(productQuantity>0){

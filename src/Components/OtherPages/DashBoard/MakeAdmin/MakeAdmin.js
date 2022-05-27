@@ -20,7 +20,9 @@ const MakeAdmin = () => {
     return (
         <div>
     <div className="table-responsive-md">
-        <h6 className='text-center'>We Have <span className='text-danger'>{dbUsers?.length}</span>  users with Admin </h6>
+    <div className="d-flex justify-content-center my-3">
+            <h3 className='text-center title px-2'>We Have <span className='text-warning'>{dbUsers?.length}</span>  users with Admin </h3>
+            </div>
     <table className="table table-striped">
     <thead>
     <tr>
