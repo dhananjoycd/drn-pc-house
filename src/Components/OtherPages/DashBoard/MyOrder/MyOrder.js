@@ -53,7 +53,9 @@ const MyOrder = () => {
               Already Paid
             </Button>:
             <Button onClick={()=>{
-              navigate(`payPayment/${order._id}`);
+              const data = { payment: 'pending'}
+              updateOrder(order._id, data, order.uid )
+              // navigate(`payPayment/${order._id}`);
             }} variant="success" className='fw-bold b-title' size="sm">
      Pay Payment
         </Button>

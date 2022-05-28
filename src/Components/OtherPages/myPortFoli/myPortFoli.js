@@ -1,6 +1,6 @@
 import React from 'react';
 
-const myPortFoli = () => {
+const MyPortFoli = () => {
     return (
         <div>
             port foli
@@ -8,4 +8,4 @@ const myPortFoli = () => {
     );
 };
 
-export default myPortFoli;
+export default MyPortFoli;

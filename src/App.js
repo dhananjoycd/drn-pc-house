@@ -23,6 +23,9 @@ import Reviews from './Components/OtherPages/Reviews/Reviews';
 import PurchaseNow from './Components/OtherPages/PurchaseNow/PurchaseNow';
 import ManagePCpart from './Components/OtherPages/DashBoard/ManagePCpart/ManagePCpart';
 import PayPayment from './Components/OtherPages/DashBoard/PayPayment/PayPayment';
+import RequireUser from './Components/useRequireAuth/RequireUser';
+import MyPortFoli from './Components/OtherPages/MyPortFoli/MyPortFoli';
+import RequireAdmin from './Components/useRequireAuth/RequireAdmin';
 
 function App() {
   return (
@@ -38,24 +41,39 @@ function App() {
     <Route path="parts/:partID" element={<PurchaseNow></PurchaseNow>}></Route>
 
     <Route path="reviews" element={<Reviews></Reviews>}></Route>
-    <Route path="myPortfolio" element={<MyProfile></MyProfile>}></Route>
-    <Route path="/dashboard/myorders/payPayment/:payID" element={<PayPayment></PayPayment>}></Route>
+    <Route path="myPortfolio" element={
+         <RequireUser>
+    <MyPortFoli></MyPortFoli>
+    </RequireUser>
+    }></Route>
+
+    <Route path="/dashboard/myorders/payPayment/:payID" element={
+    <RequireUser>
+    <PayPayment></PayPayment>
+    </RequireUser>}></Route>
 
 
-    <Route path="dashboard" element={<DashBoard></DashBoard>}>
+    <Route path="dashboard" element={
+       <RequireUser>
+    <DashBoard></DashBoard>
+    </RequireUser>
+    }>
     
       <Route path='myorders' element={<MyOrder></MyOrder> }></Route>
       <Route path='addreview' element={< AddReview></AddReview> }></Route>
       <Route path='myprofile' element={ <MyProfile></MyProfile> }></Route>
       <Route index element={ <MyProfile></MyProfile> }></Route>
-      <Route path='manageOrders' element={ <ManageOrder></ManageOrder> }></Route>
-      <Route path='addProducts' element={ <AddProducts></AddProducts> }></Route>
 
-      <Route path='manageProducts' element={ <ManageProducts></ManageProducts>}></Route>
-      <Route path='manageProducts/:pcPartID' element={<ManagePCpart></ManagePCpart>}></Route>
 
-      <Route path='admin' element={<MakeAdmin></MakeAdmin>}></Route>
+      <Route path='manageOrders' element={<RequireAdmin>  <ManageOrder></ManageOrder> </RequireAdmin> }></Route>
+      <Route path='addProducts' element={<RequireAdmin>  <AddProducts></AddProducts> </RequireAdmin> }></Route>
+
+      <Route path='manageProducts' element={<RequireAdmin>  <ManageProducts></ManageProducts> </RequireAdmin> }></Route>
+      <Route path='manageProducts/:pcPartID' element={<RequireAdmin> <ManagePCpart></ManagePCpart> </RequireAdmin> }></Route>
+
+      <Route path='admin' element={<RequireAdmin> <MakeAdmin></MakeAdmin> </RequireAdmin> }></Route>
     </Route>
+
 
     <Route path="/login"  element={<Login></Login>}></Route>
     <Route path="/signup"  element={<SignUp></SignUp>}></Route>

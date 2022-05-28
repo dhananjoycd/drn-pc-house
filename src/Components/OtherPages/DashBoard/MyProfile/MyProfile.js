@@ -32,7 +32,7 @@ const {dbUser,updateUser,updateDone,deleteUser } = useMongoDB();
 //input data value receive from user
 const [name, setName] = useState(user?.displayName);
 const [phone, setPhone] = useState('' || dbUser?.phoneNumber);
-const [photo, setPhoto] = useState(profilePic);
+const [photo, setPhoto] = useState(user?.photoURL ||profilePic);
 const [email, setEmail] = useState('' );
 const [linkdinUrl, setLinkdinUrl] = useState('https://www.linkedin.com/in/dhananjoycd/');
 const [educationInfo, setEdueducationInfo] = useState(''||dbUser?.educationInfo);
@@ -99,6 +99,7 @@ else{
       {user? <div className='container text-center my-5'>
             {errorMessage && `We found ${errorMessage}`}
 <h3>Here, we show your Basic Information</h3>
+{!dbUser&& <h3 className='text-danger font-title'> If You want to access Private rout, You have to update your profile </h3>}
 
 
 <Card className='profile'>
