@@ -29,7 +29,7 @@ const ManageOrder = () => {
           <th scope="col">Order Quantity</th>
           <th scope="col">Price</th>
           <th scope="col">Payment</th>
-          <th className='bg-warning' scope="col"  colspan="2">Admin Action</th>
+          <th className='bg-warning' scope="col"  colSpan="2">Admin Action</th>
           <th className='bg-warning' scope="col">Remain Product</th>
         </tr>
       </thead>
@@ -57,12 +57,17 @@ const ManageOrder = () => {
                 }</td>
     
     
-            <td> <Button onClick={()=>{
+            <td> {(order?.payment ==='paid') ?<Button onClick={()=>{
+                 deleteOrder(order._id)
+        
+            }} variant="primary" className='fw-bold b-title' size="sm">
+        Order Delivered
+        </Button>:<Button onClick={()=>{
                  deleteOrder(order._id)
         
             }} variant="danger" className='fw-bold b-title' size="sm">
         Cancel Order
-        </Button></td>
+        </Button>}</td>
         <td><span className='fw-bold title'>{order?.productQuantity}</span></td>
           </tr>)
       }

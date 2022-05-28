@@ -1,10 +1,14 @@
 import React from 'react';
+import Loading from '../../../Hooks/Loading';
 import useMongoDB from '../../../Hooks/useMongoDB';
 import Part from '../Part/Part';
 
 const Parts = () => {
     const {pcParts} = useMongoDB();
     const posts = pcParts;
+    if(!pcParts.length){
+        return <Loading></Loading>
+    }
     return (
         <div className='container-xxl'>
             <div className="d-flex justify-content-center mt-4">

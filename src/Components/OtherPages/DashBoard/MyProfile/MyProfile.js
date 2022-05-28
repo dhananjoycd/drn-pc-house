@@ -11,7 +11,7 @@ import useMongoDB from '../../../../Hooks/useMongoDB';
 
 
 const MyProfile = () => {
-let userUrl = 'http://localhost:5000/users'
+let userUrl = 'https://whispering-refuge-62530.herokuapp.com/users'
     const {createApi} = useCreatePost();
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ let userUrl = 'http://localhost:5000/users'
         auth
       );
 //get correct user
-const {dbUser,updateUser,updateDone } = useMongoDB();
+const {dbUser,updateUser,updateDone,deleteUser } = useMongoDB();
 
      //default profile pic Image
      const profilePic = 'https://images.pexels.com/photos/1535907/pexels-photo-1535907.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'; 
@@ -155,7 +155,7 @@ else{
   <div className='update Profile my-3'>
             <h3> Update your Profile</h3>
             {
-              (dbUser?.profileDone)? <h6 className='text-success font-title'> You can able to take order and Add Reviews</h6> : <h6 className='text-danger font-title  fs-5'>Becareful! You can Update Your Profile Once <span className='text-primary'>But if you need update again place contact to admin</span></h6>
+              (dbUser?.profileDone)? <h6 className='text-success font-title p-2'> You can able to take order and Add Reviews <span className='text-primary'>But if you need update again,Please Click on Reset Profile Button</span></h6> : <h6 className='text-danger font-title  fs-5'>Becareful! You can Update Your Profile Once <span className='text-primary'>But if you need update again,Please Click on Reset Profile Button</span></h6>
             }
           
 
@@ -206,10 +206,18 @@ else{
 </div> 
 
 {
-  dbUser?.profileDone? <input className='mb-2 btn btn-success' type="submit" value="Already Updated Profile" disabled/>  : <input className='mb-2 btn btn-danger font-title fw-bold' type="submit" value="Update Profile Once" />
+  dbUser?.profileDone?<input className='mb-2 btn btn-success' type="submit" value="Already Updated Profile" disabled/> : <input className='mb-2 btn btn-danger font-title fw-bold' type="submit" value="Update Profile Once" />
 } 
      
 </form>  
+
+
+{
+  dbUser?.profileDone &&
+ <button onClick={()=>{
+  deleteUser(dbUser._id, dbUser.uid)
+ }} className="btn btn-danger fw-bolder fs-5">Reset Profile</button>
+}
 
     </div> 
     

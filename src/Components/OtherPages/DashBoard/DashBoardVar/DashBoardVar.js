@@ -8,7 +8,7 @@ import useGetPost from '../../../../Hooks/useGetPost';
 const DashBoardVar = () => {
   const [user, loading, error] = useAuthState(auth);
   //get correct user
-let userUrl = 'http://localhost:5000/users'
+let userUrl = 'https://whispering-refuge-62530.herokuapp.com/users'
 const {posts} = useGetPost(userUrl);
  const dbUser = posts.find(p => {
     if(p?.uid === user?.uid  ){

@@ -10,7 +10,7 @@ const useMongoDB = () => {
     const {updateApi} = useUpdatePost();
     const {deleteApi} = useDeletePost();
     //get correct post
-let userUrl = 'http://localhost:5000/users'
+let userUrl = 'https://whispering-refuge-62530.herokuapp.com/users'
 var {posts} = useGetPost(userUrl);
 let dbUsers = posts;
  const dbUser = posts.find(p => {
@@ -19,41 +19,59 @@ let dbUsers = posts;
     }
 })
 var role = dbUser?.role;
-var uid = dbUser?.uid;
 
-var {posts} = useGetPost('http://localhost:5000/pcparts');
+var {posts} = useGetPost('https://whispering-refuge-62530.herokuapp.com/pcparts');
  const pcParts = posts;
 
-var {posts} = useGetPost('http://localhost:5000/orders');
+var {posts} = useGetPost('https://whispering-refuge-62530.herokuapp.com/reviews');
+ const reviews = posts;
+
+ const myReviews = [];
+ reviews.map( o =>{
+     if(user?.uid === o.uid ){
+        myReviews.push(o);
+
+     }
+ })
+
+var {posts} = useGetPost('https://whispering-refuge-62530.herokuapp.com/orders');
  const orders = posts;
+
+ const myOrders = [];
+ orders.map( o =>{
+     if(user?.uid === o.uid ){
+    myOrders.push(o);
+
+     }
+ })
 
 
 //update correct API
 
-const updateUser=(id, data)=>{
-    updateApi(`http://localhost:5000/users/${id}`, data, role);
+const updateUser=(id, data,uid)=>{
+    updateApi(`https://whispering-refuge-62530.herokuapp.com/users/${id}`, data, role,uid);
 }
 
 const updatePcParts=(id, data)=>{
-    updateApi(`http://localhost:5000/pcparts/${id}`, data, role, uid);
+    updateApi(`https://whispering-refuge-62530.herokuapp.com/pcparts/${id}`, data, role, dbUser?.uid);
 }
-const updateOrder=(id, data)=>{
-    updateApi(`http://localhost:5000/orders/${id}`, data, role, uid);
+const updateOrder=(id, data,uid)=>{
+    updateApi(`https://whispering-refuge-62530.herokuapp.com/orders/${id}`, data, role, uid);
 }
 
 
 //delete Correct API
-const deletePcPart =(id) =>{
-    deleteApi(`http://localhost:5000/pcparts/${id}` , id, role);
+const deletePcPart =(id,uid) =>{
+    deleteApi(`https://whispering-refuge-62530.herokuapp.com/pcparts/${id}` , id, role, uid);
 }
-const deleteUser =(id) =>{
-    deleteApi(`http://localhost:5000/users/${id}`, id, role )
+const deleteUser =(id, uid) =>{
+    deleteApi(`https://whispering-refuge-62530.herokuapp.com/users/${id}`, id, role, uid )
 }
-const deleteOrder =(id) =>{
-    deleteApi(`http://localhost:5000/orders/${id}`, id, role,uid )
+const deleteOrder =(id,uid) =>{
+    deleteApi(`https://whispering-refuge-62530.herokuapp.com/orders/${id}`, id, role,uid )
 }
 
-    return {dbUser, dbUsers,pcParts,orders, updatePcParts,updateUser, updateOrder, deleteUser, deletePcPart, deleteOrder};
+    return {dbUser, dbUsers,pcParts,orders,myOrders,reviews,myReviews, updatePcParts,updateUser, updateOrder, deleteUser, deletePcPart, deleteOrder};
 };
 
 export default useMongoDB;

@@ -6,17 +6,8 @@ import Loading from '../../../../Hooks/Loading';
 import useMongoDB from '../../../../Hooks/useMongoDB';
 
 const MyOrder = () => {
-    const {orders, updateOrder, deleteOrder} = useMongoDB();
-    const [user] = useAuthState(auth);
-
-    const myOrders = [];
-    orders.map( o =>{
-        if(user?.uid === o.uid ){
-       myOrders.push(o);
-  
-        }
-    })
-
+    const {myOrders, updateOrder, deleteOrder} = useMongoDB();
+ 
     if(myOrders.length==0){
         return  <h6 className='text-center'> <span className='text-danger fs-3'>Orders Field was Empty</span><Loading></Loading></h6>
     }
@@ -41,7 +32,7 @@ const MyOrder = () => {
           <th scope="col">Quantity</th>
           <th scope="col">Price</th>
           <th scope="col">Payment</th>
-          <th className='bg-warning' scope="col"  colspan="2">User Action</th>
+          <th className='bg-warning' scope="col"  colSpan="2">User Action</th>
         </tr>
       </thead>
       <tbody className='bg-light border'>
@@ -61,7 +52,7 @@ const MyOrder = () => {
             </Button>:
             <Button onClick={()=>{
                 const data ={payment: 'pending'}
-                updateOrder(order._id, data)
+                updateOrder(order._id, data, order.uid)
             
             }} variant="success" className='fw-bold b-title' size="sm">
      Pay Payment
@@ -91,7 +82,7 @@ const MyOrder = () => {
 
         </>:
         <Button onClick={()=>{
-            deleteOrder(order._id)
+          deleteOrder(order._id, order.uid);
 
         }} variant="danger" className='fw-bold b-title' size="sm">
         Cancel Order

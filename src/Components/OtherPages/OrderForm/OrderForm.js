@@ -43,7 +43,7 @@ const OrderForm = ({post}) => {
 
 if(productQuantity>0){
     updatePcParts(_id, {productQuantity});
-createApi('http://localhost:5000/orders', orderData);
+createApi('https://whispering-refuge-62530.herokuapp.com/orders', orderData);
 toast.success('Taken Order Succefully done');
 navigate('/dashboard/myorders')
 }

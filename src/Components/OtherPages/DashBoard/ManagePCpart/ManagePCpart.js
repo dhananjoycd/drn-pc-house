@@ -5,7 +5,7 @@ import PcPartUpdateForm from '../PcPartUpdateForm/PcPartUpdateForm';
 
 const ManagePCpart = () => {
     const {pcPartID} = useParams();
-    const {post} = useGetOnePost(`http://localhost:5000/pcparts/${pcPartID}`);
+    const {post} = useGetOnePost(`https://whispering-refuge-62530.herokuapp.com/pcparts/${pcPartID}`);
     const {_id, lowestQuantity, highestQuantity, productQuantity, productType, productName, productIMG, productPrice, productBody} = post;
     return (
         <div>

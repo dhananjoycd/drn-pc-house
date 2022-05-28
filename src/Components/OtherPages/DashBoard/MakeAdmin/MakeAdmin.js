@@ -30,7 +30,7 @@ const MakeAdmin = () => {
       <th scope="col">User Name</th>
       <th scope="col">Email</th>
       <th scope="col">Status</th>
-      <th className='bg-warning text-dark rounded' scope="col"  colspan="2">Admin Action</th>
+      <th className='bg-warning text-dark rounded' scope="col"  colSpan="2">Admin Action</th>
     </tr>
   </thead>
   <tbody>

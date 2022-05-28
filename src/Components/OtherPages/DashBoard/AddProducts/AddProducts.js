@@ -38,7 +38,7 @@ const AddProducts = () => {
     //for product create
     const handleAddProduct =(e)=>{
         e.preventDefault();
-        createApi('http://localhost:5000/pcparts',data );
+        createApi('https://whispering-refuge-62530.herokuapp.com/pcparts',data );
 
     }
 

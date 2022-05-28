@@ -5,7 +5,7 @@ import OrderForm from '../OrderForm/OrderForm';
 
 const PurchaseNow = () => {
     const {partID} = useParams();
-    const {post} = useGetOnePost(`http://localhost:5000/pcparts/${partID}`);
+    const {post} = useGetOnePost(`https://whispering-refuge-62530.herokuapp.com/pcparts/${partID}`);
 
     const {_id, lowestQuantity, highestQuantity, productQuantity, productType, productName, productIMG, productPrice, productBody} = post;
 
