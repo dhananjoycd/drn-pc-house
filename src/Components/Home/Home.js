@@ -6,6 +6,8 @@ import Loading from '../../Hooks/Loading';
 import useMongoDB from '../../Hooks/useMongoDB';
 import useOriganlUsers from '../../Hooks/useOriganlUsers';
 import { Card } from 'react-bootstrap';
+import { FaItchIo, FaPaypal, FaAngellist,FaBtc, FaPhoneAlt, FaTaxi} from 'react-icons/fa';
+
 
 
 const Home = () => {
@@ -24,6 +26,8 @@ const buyers = makeOrginalUsers(buyersUID, orders);
     return (
         <div>
          <Banner></Banner>
+
+
       <div className='container-xxl'>
           {/*6 collection */}
       <div>
@@ -39,11 +43,65 @@ const buyers = makeOrginalUsers(buyersUID, orders);
 </div>
       </div>
 
-      {/* web  site summary*/}
+      {/*  summary*/}
     <div>
+
+
     <div className="d-flex justify-content-center mt-4 ">
             <h3 className='title text-center'>Business Summary</h3>
             </div>
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-4 my-3">
+
+                <div className="col">
+                    <Card className='h-100 shadow text-center py-2 text-dark fw-bold font-title bg-light'>
+                    <Card.Body>
+                    <Card.Title className='text-primary fs-1'><FaItchIo/></Card.Title>
+                    <Card.Text>
+            It is one of the greatest Online shop
+          </Card.Text>
+                    </Card.Body>
+                    </Card>
+                </div>
+
+
+                <div className="col">
+                    <Card className='h-100 shadow text-center py-2 text-dark fw-bold font-title bg-light'>
+                    <Card.Body>
+                    <Card.Title className='text-primary fs-1'> <FaPhoneAlt/></Card.Title>
+                    <Card.Text>
+            We Suport our customer 24 hours in 7 days
+          </Card.Text>
+                    </Card.Body>
+                    </Card>
+                </div>
+
+
+                <div className="col">
+                    <Card className='h-100 shadow text-center py-2 text-dark fw-bold font-title bg-light'>
+                    <Card.Body>
+                    <Card.Title className='text-primary fs-1'> <FaTaxi/></Card.Title>
+                    <Card.Text>
+            We deliver our Products as fast as in  24 hours within 30 minutes
+          </Card.Text>
+                    </Card.Body>
+                    </Card>
+                </div>
+
+
+                <div className="col">
+                    <Card className='h-100 shadow text-center py-2 text-dark fw-bold font-title bg-light'>
+                    <Card.Body>
+                    <Card.Title className='text-primary fs-1'> <FaBtc/></Card.Title>
+                    <Card.Text>
+            Our Comapany Price value across the billion dollar and we want to change the world by online cuurency bitcion
+          </Card.Text>
+                    </Card.Body>
+                    </Card>
+                </div>
+
+
+            </div>
+
 
     </div>
 
@@ -52,7 +110,7 @@ const buyers = makeOrginalUsers(buyersUID, orders);
       <div className="d-flex justify-content-center mt-4 ">
             <h3 className='title text-center'>Latest 4 Review</h3>
             </div>
-         <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3 my-2 ">
+         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-3 my-2 ">
              
 {
     reviews.slice(0,6).map(review => <Review key={review._id} review={review}></Review>)
@@ -67,7 +125,7 @@ const buyers = makeOrginalUsers(buyersUID, orders);
             <h3 className='title text-center'>Latest 10 Buyer</h3>
             </div>
             <div className="container">
-<div className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4 my-3">
+<div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-4 my-3">
 {
 buyers.slice(0,10).map( user => <div className="col"><Card className='shadow text-center py-2 text-dark fw-bold font-title bg-info'>{user.displayName}</Card></div> )
 
