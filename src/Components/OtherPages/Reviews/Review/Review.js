@@ -22,7 +22,8 @@ const Review = (props) => {
           </Card.Text>
         </Card.Body>
 
-        <Card.Footer className="bg-dark text-center"> {ModalC( false, 'See Details', 'Review Details',    <Card className='img-rv h-100'>
+        <Card.Footer className="bg-dark text-center"> 
+        {ModalC( false, 'See Details', 'Review Details',    <Card className='img-rv h-100'>
         <span className='d-flex justify-content-center my-2'><img src={photoURL} alt="profile pic" /></span>
         <Card.Body>
         <span className='d-flex justify-content-between bg-light px-3 py-1 rounded'>

@@ -167,3 +167,16 @@ justify-content: center;
     border-radius: 50%;
     border: .5px groove red;
 }
+
+/* footer css */
+.list {
+  list-style: none;
+  }
+  .list a{
+  text-decoration: none;
+  color: white;
+  }
+  .list li:hover{
+  text-decoration: none;
+  color: yellow;
+  }
