@@ -1,11 +1,13 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Navigate, useNavigate } from 'react-router-dom';
 import auth from '../../../../firebase.init';
 import Loading from '../../../../Hooks/Loading';
 import useMongoDB from '../../../../Hooks/useMongoDB';
 
 const MyOrder = () => {
+  const navigate = useNavigate();
     const {myOrders, updateOrder, deleteOrder} = useMongoDB();
  
     if(myOrders.length==0){
@@ -51,9 +53,7 @@ const MyOrder = () => {
               Already Paid
             </Button>:
             <Button onClick={()=>{
-                const data ={payment: 'pending'}
-                updateOrder(order._id, data, order.uid)
-            
+              navigate(`payPayment/${order._id}`);
             }} variant="success" className='fw-bold b-title' size="sm">
      Pay Payment
         </Button>

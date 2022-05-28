@@ -21,7 +21,7 @@ const useUpdatePost = () => {
       .then(result => {
       console.log('data pabo',result);
       updateDone = true;
-      // toast.success(`Hey! ${user?.displayName}, Your post update was successfully done`);
+      toast.success(`Hey! ${user?.displayName}, Your update was successfully done`);
       window.location.reload();
      
       })

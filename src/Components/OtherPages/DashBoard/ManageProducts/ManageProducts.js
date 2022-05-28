@@ -21,7 +21,7 @@ const ManageProducts = () => {
 
 
     return (
-        <div className='container-fluid'>
+        <div className='container-lg'>
 <h3 className='my-3 text-center font-title bg-success mx-2 rounded py-2 text-dark'>Hey! <span className='ff text-white'> {user?.displayName.split(' ')?.[0]}</span> , You have <span className='ff text-danger bg-white px-2 rounded-pill'>{posts?.length}</span> products </h3>
 
     <div className="row row-cols-1 row-cols-md-2  row-cols-xl-3 g-4">

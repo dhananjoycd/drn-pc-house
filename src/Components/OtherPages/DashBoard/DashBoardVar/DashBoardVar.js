@@ -64,7 +64,7 @@ const {posts} = useGetPost(userUrl);
       </Container>
     </Navbar>
   ))}
-<div className='container-md'>
+<div>
     
 <Outlet></Outlet>
 </div>

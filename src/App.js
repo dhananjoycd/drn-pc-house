@@ -22,6 +22,7 @@ import Parts from './Components/OtherPages/Parts/Parts';
 import Reviews from './Components/OtherPages/Reviews/Reviews';
 import PurchaseNow from './Components/OtherPages/PurchaseNow/PurchaseNow';
 import ManagePCpart from './Components/OtherPages/DashBoard/ManagePCpart/ManagePCpart';
+import PayPayment from './Components/OtherPages/DashBoard/PayPayment/PayPayment';
 
 function App() {
   return (
@@ -35,7 +36,10 @@ function App() {
     <Route path="blogs" element={<Blogs></Blogs>}></Route>
     <Route path="parts" element={ <Parts></Parts>}></Route>
     <Route path="parts/:partID" element={<PurchaseNow></PurchaseNow>}></Route>
+
     <Route path="reviews" element={<Reviews></Reviews>}></Route>
+    <Route path="myPortfolio" element={<MyProfile></MyProfile>}></Route>
+    <Route path="/dashboard/myorders/payPayment/:payID" element={<PayPayment></PayPayment>}></Route>
 
 
     <Route path="dashboard" element={<DashBoard></DashBoard>}>

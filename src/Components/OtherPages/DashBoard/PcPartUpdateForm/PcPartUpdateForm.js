@@ -5,16 +5,27 @@ import useMongoDB from '../../../../Hooks/useMongoDB';
 
 
 const PcPartUpdateForm = ({post}) => {
-    const {updatePcParts} = useMongoDB();
+    const {updatePcParts, updateDone} = useMongoDB();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    let {_id, productQuantity} = post;
-
 
     const onSubmit = data =>{
+        var {_id, productQuantity, lowestQuantity,highestQuantity,productPrice} = post;
         const quantity = parseInt(data.addQuantity);
-        const lowestQuantity = parseInt(data.lowestQuantity);
-        const highestQuantity = parseInt(data.highestQuantity);
-        const productPrice = parseInt(data.productPrice);
+
+        if( parseInt(data.lowestQuantity)>0){
+        lowestQuantity = parseInt(data.lowestQuantity);
+        };
+
+        if( parseInt(data.highestQuantity)>0){
+        highestQuantity = parseInt(data.highestQuantity);
+        };
+
+        if( parseInt(data.productPrice)>0){
+            productPrice = parseInt(data.productPrice);
+        };
+
+
+
       
       
       
@@ -28,7 +39,11 @@ const PcPartUpdateForm = ({post}) => {
         if(productQuantity>0){
             updatePcParts(_id, data)
         toast.info('Taking Action To Update PC Part');
+        if(updateDone){
+            toast.success('Update PC Part successfully done'); 
         }
+        }
+        
       }
       else{
         toast.warning(`Your Quantity ${quantity} is less than Zero`);   
@@ -58,7 +73,7 @@ const PcPartUpdateForm = ({post}) => {
 
  <div className='mt-3 text-center'>
  <label className='font-title'>Add Product Quantity</label> <br />
- <input className='text-center fw-bold' type="number" placeholder="Add Quantity" {...register("addQuantity")} required/>
+ <input className='text-center fw-bold' type="number" placeholder="Add Quantity" {...register("addQuantity")} />
  </div>
 
 

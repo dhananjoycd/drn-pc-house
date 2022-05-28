@@ -7,7 +7,7 @@ import useUpdatePost from './useUpdatePost';
 const useMongoDB = () => {
  
     const [user] = useAuthState(auth);
-    const {updateApi} = useUpdatePost();
+    const {updateApi,updateDone} = useUpdatePost();
     const {deleteApi} = useDeletePost();
     //get correct post
 let userUrl = 'https://whispering-refuge-62530.herokuapp.com/users'
@@ -71,7 +71,7 @@ const deleteOrder =(id,uid) =>{
     deleteApi(`https://whispering-refuge-62530.herokuapp.com/orders/${id}`, id, role,uid )
 }
 
-    return {dbUser, dbUsers,pcParts,orders,myOrders,reviews,myReviews, updatePcParts,updateUser, updateOrder, deleteUser, deletePcPart, deleteOrder};
+    return {dbUser, dbUsers,pcParts,orders,myOrders,reviews,myReviews, updatePcParts,updateUser, updateOrder,updateDone, deleteUser, deletePcPart, deleteOrder};
 };
 
 export default useMongoDB;
